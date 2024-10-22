@@ -1,18 +1,9 @@
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding-top: 50px;
-}
-
 h2 {
   color: var(--white);
+}
+
+.formLogin {
+  background-color: var(--background-light);
 }
 
 form {
@@ -26,14 +17,14 @@ form {
   gap: 30px;
   padding: 30px;
   border-radius: 10px;
-  background-color: var(--background-light);
-  max-width: 50%;
   width: 400px;
   margin-bottom: 20px;
-& img{
-  max-width: 200px;
-  height: auto;
-}
+
+  & img {
+    max-width: 200px;
+    height: auto;
+  }
+
   & button {
     border-radius: 30px;
     background-color: var(--primary-color);
@@ -53,13 +44,20 @@ form {
     border: 1px solid var(--background-light);
     border-radius: 30px;
     height: 40px;
+    width: 100%;
     background-color: var(--white);
     font-size: 14px;
     padding: 0 10px 0 10px;
     outline: none;
   }
 
-  & .error-message{
+  & input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+  }
+
+  & .error-message {
     color: var(--error-color)
   }
 }

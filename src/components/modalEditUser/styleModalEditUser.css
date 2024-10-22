@@ -1,0 +1,23 @@
+.password-container {
+  position: relative;
+  /* Para posicionar o botão dentro deste contêiner */
+
+
+  & .password-input {
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  & .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+  }
+}
+
