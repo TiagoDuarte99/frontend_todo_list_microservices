@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Users } from "./usersServices";
-import ModalEditUser from "../modalEditUser"
+import ModalEditUser from "../modalEditUser";
+import ModalDeleteUser from "../modalDeleteUser";
 
 import "./stylesUsers.css";
 
@@ -14,11 +15,18 @@ const UsersPage = () => {
   const [isDisabledIncrement, setIsDisabledIncrement] = useState(false);
 
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowDelete, setModalShowDelete] = useState(false);
+
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleEditClick = (user) => {
     setSelectedUser(user);
     setModalShow(true);
+  };
+
+  const handleDeleteClick = (user) => {
+    setSelectedUser(user);
+    setModalShowDelete(true);
   };
 
   const getUserPage = async (page) => {
@@ -27,6 +35,9 @@ const UsersPage = () => {
       setTotalCount(data.totalCount);
       const pagesTotal = Math.ceil(data.totalCount / 12);
       setTotalPages(pagesTotal);
+      console.log('toalPages', totalPages);
+      console.log('pagesTotal',pagesTotal);
+
 
       setUsers(data.users);
     } catch (error) {
@@ -38,12 +49,13 @@ const UsersPage = () => {
   useEffect(() => {
     getUserPage(page);
     setIsDisabledDecrement(page === 1);
-    setIsDisabledIncrement(page === totalPages);
-  }, [page]);
+    setIsDisabledIncrement(page === totalPages || totalPages == 1);
+  }, [page, totalPages ]);
 
   const handleIncrement = () => {
     if (page) countPage((prevPage) => prevPage + 1);
   };
+
   const handleDecrement = () => {
     if (page === 1) {
       setIsDisabledDecrement(true);
@@ -75,7 +87,12 @@ const UsersPage = () => {
                 >
                   Editar
                 </button>
-                <button className="buttonDelete">Eliminar</button>
+                <button
+                  className="buttonDelete"
+                  onClick={() => handleDeleteClick(user)}
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
           </div>
@@ -86,6 +103,14 @@ const UsersPage = () => {
             user={selectedUser}
             show={modalShow}
             onHide={() => setModalShow(false)}
+          />
+        )}
+
+        {selectedUser && (
+          <ModalDeleteUser
+            user={selectedUser}
+            show={modalShowDelete}
+            onHide={() => setModalShowDelete(false)}
           />
         )}
       </div>

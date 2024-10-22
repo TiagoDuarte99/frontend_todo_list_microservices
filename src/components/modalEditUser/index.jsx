@@ -38,7 +38,7 @@ const ModalEditUser = ({ user, show, onHide }) => {
     setShowConfirmePassword((prev) => !prev);
   };
 
-  const putUser = async (id, newEmail, active) => {
+  const putUser = async () => {
     try {
       let user = {
         id,
@@ -151,7 +151,7 @@ const ModalEditUser = ({ user, show, onHide }) => {
         <Button onClick={onHide}>Fechar</Button>
         <Button
           onClick={() => {
-            putUser(id, newEmail, active);
+            putUser();
           }}
         >
           Salvar
